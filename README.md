@@ -1,4 +1,7 @@
-# Install
+# Mercure-Symfony
+Simple app for testing Mercure and his Symfony component.
+
+## Install
 1) `composer install`
 2) create "mercure" database and complete DATABASE_URL .env file with your credentials
 3) `php bin/console doctrine:database:create`
