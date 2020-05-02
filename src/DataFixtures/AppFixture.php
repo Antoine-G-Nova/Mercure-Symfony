@@ -10,7 +10,7 @@ class AppFixture extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $names = ['Kevin', 'Antoine', 'Sarah'];
+        $names = ['K.Dunglas', 'Antoine', 'Sarah'];
         foreach ($names as $name) {
             $user = new User();
             $user->setUsername($name)
