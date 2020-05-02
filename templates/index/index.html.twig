@@ -18,15 +18,18 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Connect as : {{ app.user.username }}! ✅</h1>
+		<h1>Connected as :
+			{{ app.user.username }}! ✅</h1>
 	</div>
 {% endblock %}
 
 
 {% block javascripts %}
+	{{ parent() }}
 	<script>
 		const token = "{{ token }}";
 	</script>
 	<script src="{{ asset('js/eventsource.min.js') }}"></script>
+	<script src="{{ asset('js/notify.js') }}"></script>
 	<script src="{{ asset('js/index.js') }}"></script>
 {% endblock %}

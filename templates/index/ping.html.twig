@@ -18,14 +18,46 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Connect as :
+		<h1>Connected as :
 			{{ app.user.username }}! ✅</h1>
 		<ul class="list-group">
+			<li class="list-group-item bg-secondary mb-2">
+				<span>Tout le monde</span>
+				<form action="{{ path('ping_all', {type: 'ping'}) }}" method="post" class="float-right">
+					<div class="input-group">
+						<input type="text" value="{{ message }}" class="form-control" placeholder="Text to send" name="message" id="message">
+						<div class="input-group-append">
+							<button class="btn btn-success btn-large">PING!</button>
+						</div>
+					</div>
+				</form>
+				<form action="{{ path('ping_all', {type: 'alerte'}) }}" method="post" class="float-right pr-2">
+					<div class="input-group">
+						<input type="text" value="{{ message }}" class="form-control" placeholder="Text to send" name="message" id="message">
+						<div class="input-group-append">
+							<button class="btn btn-warning btn-large">Alerte!</button>
+						</div>
+					</div>
+				</form>
+			</li>
 			{% for user in users %}
-				<li class="list-group-item">
+				<li class="list-group-item bg-light">
 					<span>{{ user.username }}</span>
-					<form action="{{ path('ping_id', {id: user.id}) }}" method="post" class="float-right">
-						<button class="btn btn-warning btn-large">PING!</button>
+					<form action="{{ path('ping_id', {id: user.id, type: 'ping'}) }}" method="post" class="float-right">
+						<div class="input-group">
+							<input type="text" value="{{ message }}" class="form-control" placeholder="Text to send" name="message" id="message">
+							<div class="input-group-append">
+								<button class="btn btn-success btn-large">PING!</button>
+							</div>
+						</div>
+					</form>
+					<form action="{{ path('ping_id', {id: user.id, type: 'alerte'}) }}" method="post" class="float-right pr-2">
+						<div class="input-group">
+							<input type="text" value="{{ message }}" class="form-control" placeholder="Text to send" name="message" id="message">
+							<div class="input-group-append">
+								<button class="btn btn-warning btn-large">Alerte!</button>
+							</div>
+						</div>
 					</form>
 				</li>
 			{% endfor %}

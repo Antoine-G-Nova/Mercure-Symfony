@@ -9,16 +9,26 @@ const eventSource = new EventSourcePolyfill(url, {
 
 // The callback will be called every time an update is published
 eventSource.onmessage = (e) => {
-  console.log(e)
-  document
-    .querySelector('h1')
-    .insertAdjacentHTML(
-      'afterend',
-      '<div class="alert alert-success " role="alert">YEEEEES</div>'
-    )
+  let data = JSON.parse(e.data)
+  let title = data.type
 
-  window.setTimeout(() => {
-    const $alert = document.querySelector('.alert')
-    $alert.parentNode.removeChild($alert)
-  }, 2000)
+  var message = {
+    title: "<strong>"+  title.charAt(0).toUpperCase() + title.slice(1) +"</strong> <br />",
+    message: data.message
+  }
+  var paramNotify = {
+    type: 'success',
+    showProgressbar: false,
+    placement: {
+      from: 'bottom',
+      align: 'right',
+    },
+    offset: 20,
+    spacing: 20,
+  }
+  if (data.type !== 'ping') {
+    paramNotify.type = 'warning'
+  }
+  $.notify(message, paramNotify)
+
 }
