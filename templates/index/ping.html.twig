@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PING
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 3em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Connect as :
+			{{ app.user.username }}! ✅</h1>
+		<ul class="list-group">
+			{% for user in users %}
+				<li class="list-group-item">
+					<span>{{ user.username }}</span>
+					<form action="{{ path('ping_id', {id: user.id}) }}" method="post" class="float-right">
+						<button class="btn btn-warning btn-large">PING!</button>
+					</form>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+{% endblock %}
